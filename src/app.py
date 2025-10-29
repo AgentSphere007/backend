@@ -1,6 +1,16 @@
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
+from src.db import DB
 from src.router import router
 from src.config import config
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    await DB.create_all()
+    yield
+    await DB.dispose()
+
 
 app = FastAPI(
     docs_url="/docs" if not config.server.production else None,
@@ -10,6 +20,8 @@ app = FastAPI(
     openapi_url="/openapi.json" if not config.server.production else None,
     swagger_ui_init_oauth=None,
     swagger_ui_oauth2_redirect_url=None,
+    lifespan=lifespan,
 )
+
 
 app.include_router(router)
