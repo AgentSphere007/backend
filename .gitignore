@@ -11,3 +11,6 @@ wheels/
 
 # Environment
 .env
+
+
+temp_repo_storage/
