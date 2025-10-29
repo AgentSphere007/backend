@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from datetime import timedelta
+from typing import List
 import re
 
 
@@ -27,6 +28,7 @@ class SecurityConfig:
 @dataclass
 class AppConfig:
     gemini_api_key: str
+    temp_dir_path: str
 
 
 @dataclass
@@ -34,6 +36,7 @@ class ServerConfig:
     host: str
     port: int
     production: bool
+    cors_url: List[str]
     security: SecurityConfig
 
 

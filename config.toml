@@ -2,6 +2,7 @@
 host = "0.0.0.0"
 port = 8080
 production = false
+cors-url = ["*"]
 
 [server.security]
 jwt-secret = "somethingxyz"
@@ -17,3 +18,5 @@ ssl-mode = "disable"
 max-tries = 5
 
 [app]
+temp-dir-path = "./temp"
+gemini-api-key = "better-luck-next-time"

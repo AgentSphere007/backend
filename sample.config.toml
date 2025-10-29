@@ -17,5 +17,5 @@ ssl-mode = "disable"
 max-tries = 5
 
 [app]
-
-
+temp-dir-path = "./temp"
+gemini-api-key = "better-luck-next-time"

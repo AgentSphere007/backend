@@ -18,6 +18,7 @@ def init_config():
         host=cfg["server"]["host"],
         port=cfg["server"]["port"],
         production=cfg["server"]["production"],
+        cors_url=cfg["server"]["cors-url"],
         security=SecurityConfig(
             jwt_secret=cfg["server"]["security"]["jwt-secret"],
             token_expiry=SecurityConfig.parse_expiry(
@@ -36,7 +37,10 @@ def init_config():
         maxtries=cfg["database"]["max-tries"],
     )
 
-    app = AppConfig(gemini_api_key=cfg["app"]["gemini-api-key"])
+    app = AppConfig(
+        gemini_api_key=cfg["app"]["gemini-api-key"],
+        temp_dir_path=cfg["app"]["temp-dir-path"],
+    )
 
     return server, database, app
 
