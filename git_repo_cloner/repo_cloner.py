@@ -20,3 +20,5 @@ def cloner():
     git.Repo.clone_from(repo_url, repo_dir)
 
     print("Repo cloned successfully!")
+
+    return repo_name

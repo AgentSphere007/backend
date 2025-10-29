@@ -9,44 +9,44 @@ def replaceWithCustomModel(repo_path):
     API_KEY = "os.getenv('API_KEY')"
 
     INLINE_MODEL_DEF = '''import requests,os
-    from dotenv import load_dotenv
-    load_dotenv()
+from dotenv import load_dotenv
+load_dotenv()
 
-    class MyHostedModel:
-        def __init__(self, endpoint, api_key=None, timeout=60):
-            self.endpoint = endpoint
-            self.api_key = api_key
-            self.timeout = timeout
+class MyHostedModel:
+    def __init__(self, endpoint, api_key=None, timeout=60):
+        self.endpoint = endpoint
+        self.api_key = api_key
+        self.timeout = timeout
 
-        def _call_api(self, prompt, **kwargs):
-            headers = {{}}
-            if self.api_key:
-                headers["Authorization"] = f"Bearer {{self.api_key}}"
-            payload = {{"prompt": prompt}}
-            payload.update(kwargs)
-            resp = requests.post(self.endpoint, headers=headers, json=payload, timeout=self.timeout)
-            try:
-                data = resp.json()
-                return data
-            except Exception:
-                return resp
+    def _call_api(self, prompt, **kwargs):
+        headers = {{}}
+        if self.api_key:
+            headers["Authorization"] = f"Bearer {{self.api_key}}"
+        payload = {{"prompt": prompt}}
+        payload.update(kwargs)
+        resp = requests.post(self.endpoint, headers=headers, json=payload, timeout=self.timeout)
+        try:
+            data = resp.json()
+            return data
+        except Exception:
+            return resp
 
-        def predict(self, prompt, **kwargs):
-            return self._call_api(prompt, **kwargs)
+    def predict(self, prompt, **kwargs):
+        return self._call_api(prompt, **kwargs)
 
-        def invoke(self, prompt, **kwargs):
-            return self._call_api(prompt, **kwargs)
+    def invoke(self, prompt, **kwargs):
+        return self._call_api(prompt, **kwargs)
 
-        def generate(self, prompt, **kwargs):
-            return self._call_api(prompt, **kwargs)
-        
-        def generate_content(self, prompt, **kwargs):
-            return self._call_api(prompt, **kwargs)
+    def generate(self, prompt, **kwargs):
+        return self._call_api(prompt, **kwargs)
+    
+    def generate_content(self, prompt, **kwargs):
+        return self._call_api(prompt, **kwargs)
 
-        def __call__(self, prompt, **kwargs):
-            return self._call_api(prompt, **kwargs)
+    def __call__(self, prompt, **kwargs):
+        return self._call_api(prompt, **kwargs)
 
-    {var_name} = MyHostedModel(endpoint={endpoint}, api_key={api_key})
+{var_name} = MyHostedModel(endpoint={endpoint}, api_key={api_key})
     '''
 
 
