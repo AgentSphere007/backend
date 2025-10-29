@@ -26,3 +26,6 @@ async def verify_repo(repo: Repository):
         await session.commit()
         await session.refresh(merged_repo)
         return merged_repo
+
+
+__all__ = ["verify_repo"]
