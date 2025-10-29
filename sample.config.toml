@@ -18,4 +18,5 @@ max-tries = 5
 
 [app]
 temp-dir-path = "./temp"
+image-dir-path = "./images"
 gemini-api-key = "better-luck-next-time"

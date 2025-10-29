@@ -29,6 +29,7 @@ class SecurityConfig:
 class AppConfig:
     gemini_api_key: str
     temp_dir_path: str
+    image_dir_path: str
 
 
 @dataclass

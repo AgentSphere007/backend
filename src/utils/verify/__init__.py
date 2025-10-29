@@ -5,7 +5,7 @@ from src.models import Repository, RepositoryStatus
 from src.db import DB
 
 
-async def verify_repo(repo: Repository):
+async def verify_repo(repo: Repository) -> Repository:
     repo_name = repo.repo_name
     if not repo_name:
         repo.status = RepositoryStatus.failed

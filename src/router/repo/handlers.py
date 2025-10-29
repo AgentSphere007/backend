@@ -14,7 +14,7 @@ from src.router.user.middleware import require_auth_endpoint
 from src.models import Repository, User
 from src.db import DB
 import src.router._helper as helper
-from src.utils.verify import verify_repo
+from .helper import setup_repo
 from .schema import NewRepoRequest
 
 
@@ -68,7 +68,7 @@ async def new_repo(request: Request, body: NewRepoRequest):
             session.add(repo)
             await session.commit()
             await session.refresh(repo)
-            await verify_repo(repo)
+            await setup_repo(repo)
             return {
                 "id": repo.id,
                 "model_name": repo.model_name,

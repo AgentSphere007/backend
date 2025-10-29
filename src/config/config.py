@@ -40,6 +40,7 @@ def init_config():
     app = AppConfig(
         gemini_api_key=cfg["app"]["gemini-api-key"],
         temp_dir_path=cfg["app"]["temp-dir-path"],
+        image_dir_path=cfg["app"]["image-dir-path"],
     )
 
     return server, database, app
