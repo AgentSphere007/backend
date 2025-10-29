@@ -229,5 +229,3 @@ def main():
     print("\n--- LLM Core Security Issues (JSON) ---\n")
     print(llm_result)
 
-if __name__ == "__main__":
-    main()
