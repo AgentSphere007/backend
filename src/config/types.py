@@ -25,6 +25,11 @@ class SecurityConfig:
 
 
 @dataclass
+class AppConfig:
+    gemini_api_key: str
+
+
+@dataclass
 class ServerConfig:
     host: str
     port: int
@@ -43,4 +48,4 @@ class DatabaseConfig:
     maxtries: int
 
 
-__all__ = ["ServerConfig", "DatabaseConfig", "SecurityConfig"]
+__all__ = ["ServerConfig", "DatabaseConfig", "SecurityConfig", "AppConfig"]

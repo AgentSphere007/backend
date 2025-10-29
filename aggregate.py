@@ -4,12 +4,12 @@ import sys
 import os
 from dotenv import load_dotenv
 from modelReplace.replaceAgent import replaceWithCustomModel
+
 load_dotenv()
 
 repo_name = cloner()
 llm_result = main(repo_name)
 
-# Safely join the temp folder and repo name
 repo_path = os.path.join("temp", repo_name)
 
 
@@ -22,7 +22,7 @@ core_issues = llm_result.get("core_issues", [])
 if not core_issues:
     print("\n✅ Repo is secure — continue process ✅")
     replaceWithCustomModel(repo_path)
-    
+
 else:
     print("\n🚨 Repo flagged! Security issues:")
     for issue in core_issues:

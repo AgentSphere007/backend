@@ -1,7 +1,7 @@
 import os
 import tomllib
 from pathlib import Path
-from .types import SecurityConfig, ServerConfig, DatabaseConfig
+from .types import AppConfig, SecurityConfig, ServerConfig, DatabaseConfig
 
 CONFIG_PATH = (
     Path(str(os.getenv("CONFIG_FILE")))
@@ -36,7 +36,9 @@ def init_config():
         maxtries=cfg["database"]["max-tries"],
     )
 
-    return server, database
+    app = AppConfig(gemini_api_key=cfg["app"]["gemini-api-key"])
+
+    return server, database, app
 
 
-_server, _database = init_config()
+_server, _database, _app = init_config()
