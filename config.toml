@@ -8,12 +8,15 @@ jwt-secret = "somethingxyz"
 token-expiry = "6h"
 
 [database]
-host = "database"
+host = "db.mhxubnxliyyrsqhgtsac.supabase.co"
 port = 5432
-username = "test"
-password = "test"
-db-name = "test"
+username = "postgres"
+password = "moggy@1234$$"
+db-name = "postgres"
 ssl-mode = "disable"
 max-tries = 5
 
 [app]
+
+gemini-api-key = "mkc"
+
