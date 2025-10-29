@@ -1,10 +1,11 @@
 import os
 import git
 from urllib.parse import urlparse
+from src.config import config
 
 
 def clone(repo_url: str):
-    BASE_DIR = os.path.join("temp")
+    BASE_DIR = config.app.temp_dir_path
     repo_name = os.path.splitext(os.path.basename(urlparse(repo_url).path))[0]
     repo_dir = os.path.join(BASE_DIR, repo_name)
     os.makedirs(BASE_DIR, exist_ok=True)

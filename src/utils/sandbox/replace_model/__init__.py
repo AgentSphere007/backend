@@ -1,9 +1,10 @@
 import os
+from pathlib import Path
 import re
 import shutil
 
 
-def replaceWithCustomModel(repo_path):
+def replaceWithCustomModel(repo_path: Path):
     file_exts = (".py",)
     backup = False
     HOSTED_ENDPOINT = "os.getenv('ENDPOINT')"
@@ -134,4 +135,3 @@ class MyHostedModel:
 
 
 __all__ = ["replaceWithCustomModel"]
-

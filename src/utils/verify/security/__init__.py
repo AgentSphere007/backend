@@ -7,7 +7,7 @@ import re
 from src.config import config
 
 
-TEMP_FOLDER = os.path.join("temp")
+TEMP_FOLDER = config.app.temp_dir_path
 GEMINI_API_KEY = config.app.gemini_api_key
 
 if not TEMP_FOLDER:
@@ -231,3 +231,5 @@ def check_secure(repo_name: str) -> dict:
     formatted = format_report_for_llm(report)
     llm_result = call_gemini(formatted)
     return llm_result
+
+__all__ = ["check_secure"]
