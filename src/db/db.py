@@ -34,6 +34,8 @@ class _Database:
     _connected: bool = False
 
     async def connect(self) -> None:
+        import src.models
+
         if self._connected:
             return
         db_cfg = config.database

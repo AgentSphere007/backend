@@ -21,6 +21,8 @@ app = FastAPI(
     swagger_ui_init_oauth=None,
     swagger_ui_oauth2_redirect_url=None,
     lifespan=lifespan,
+    log_config=None,
+    access_log=False,
 )
 
 
