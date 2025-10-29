@@ -1,0 +1,29 @@
+[project]
+name = "aigit"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.120.1",
+    "sqlalchemy>=2.0.44",
+    "pydantic-settings>=2.5.2",
+    "datetime>=5.5",
+    "argon2-cffi>=25.1.0",
+]
+
+[dependency-groups]
+dev = [
+    "black>=24.0.0",
+    "pytest>=8.4.2",
+    "aiosqlite>=0.20.0",
+]
+release = [
+    "uvicorn>=0.38.0",
+    "asyncpg>=0.29.0",
+]
+
+[tool.black]
+line-length = 88
+target-version = ["py313"]
+

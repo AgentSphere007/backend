@@ -1,0 +1,6 @@
+{
+  "include": ["src"],
+  "extraPaths": ["src"],
+  "reportMissingImports": true,
+  "reportMissingModuleSource": true
+}

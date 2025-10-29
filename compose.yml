@@ -1,0 +1,26 @@
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: aigit-db
+    environment:
+      - POSTGRES_USER=someone
+      - POSTGRES_PASSWORD=someone
+      - POSTGRES_DB=someone
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  server:
+    build:.
+  container_name: aigit-server
+  ports:
+    - "8000:8000"
+  depends_on:
+    - db
+  environment:
+    - CONFIG_FILE=/root/config.toml
+    - DATABASE_URL=postgres://someone:someone@db:5432/someone?sslmode=disable
+  volumes:
+    - ./config.toml:/root/config.toml:ro
+
+volumes:
+  postgres_data:
