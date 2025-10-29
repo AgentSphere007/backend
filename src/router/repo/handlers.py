@@ -88,7 +88,7 @@ async def new_repo(request: Request, body: NewRepoRequest):
                 detail=f"Database error: {str(e)}",
             )
 
-
+@require_auth_endpoint
 async def user_repos(request: Request, user: str):
     requester_uid = None
     auth = request.headers.get("Authorization")
@@ -118,11 +118,13 @@ async def user_repos(request: Request, user: str):
 
         result = await session.execute(stmt)
         repos = result.scalars().all()
+        # if not repos:
+        #     raise HTTPException(
+        #         status_code=status.HTTP_404_NOT_FOUND,
+        #         detail=f"No repositories found for user '{user}'",
+        #     )
         if not repos:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail=f"No repositories found for user '{user}'",
-            )
+            return []
 
         return [
             {
@@ -136,7 +138,7 @@ async def user_repos(request: Request, user: str):
             for repo in repos
         ]
 
-
+@require_auth_endpoint
 async def model_repo(request: Request, user: str, model: str):
     requester_uid = None
     auth = request.headers.get("Authorization")
