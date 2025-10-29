@@ -6,7 +6,7 @@ load_dotenv()
 
 def cloner():
     repo_url = input("Enter GitHub repo URL: ")
-    BASE_DIR= os.getenv('repo_stor')
+    BASE_DIR= os.path.join("temp")
 
     repo_name = os.path.splitext(os.path.basename(urlparse(repo_url).path))[0]
     repo_dir = os.path.join(BASE_DIR, repo_name)

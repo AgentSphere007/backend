@@ -9,9 +9,8 @@ load_dotenv()
 repo_name = cloner()
 llm_result = main(repo_name)
 
-base_path = os.getenv("repo_stor")
 # Safely join the temp folder and repo name
-repo_path = os.path.join(base_path, repo_name)
+repo_path = os.path.join("temp", repo_name)
 
 
 if not llm_result:

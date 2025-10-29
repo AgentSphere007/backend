@@ -246,7 +246,7 @@ import re
 
 load_dotenv()
 
-TEMP_FOLDER = os.getenv("repo_stor")
+TEMP_FOLDER = os.path.join("temp")
 GEMINI_API_KEY = os.getenv("api_key")
 
 if not TEMP_FOLDER:
