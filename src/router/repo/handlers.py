@@ -44,8 +44,9 @@ async def all_repos():
 @require_auth_endpoint
 async def new_repo(request: Request, body: NewRepoRequest):
     model_name = body.model_name
-    repo_url = body.repo_url
+    repo_url = str(body.repo_url)
     is_private = body.is_private
+    description = body.short_description
 
     if not model_name or not repo_url:
         raise HTTPException(
@@ -56,14 +57,13 @@ async def new_repo(request: Request, body: NewRepoRequest):
     user_id = request.state.user["uid"]
     async with DB.session() as session:
         try:
-            repo_name = urlparse(str(repo_url)).path
             repo = Repository(
                 user_id=user_id,
                 model_name=model_name,
                 repo_url=repo_url,
-                repo_name=repo_name,
                 is_private=is_private,
                 status=RepositoryStatus.pending,
+                description=description
             )
             session.add(repo)
             await session.commit()
