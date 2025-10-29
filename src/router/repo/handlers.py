@@ -31,6 +31,8 @@ async def all_repos():
                     "repo_url": repo.repo_url,
                     "user_name": repo.user.username if repo.user else None,
                     "rating": repo.rating,
+                    "status": repo.status,
+                    "description":repo.description,
                 }
                 for repo in repos
             ]
@@ -187,4 +189,5 @@ async def model_repo(request: Request, user: str, model: str):
             "description": repo.description,
             "is_private": repo.is_private,
             "user_name": repo.user.username,
+            "status": repo.status,
         }
