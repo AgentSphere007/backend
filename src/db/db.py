@@ -46,7 +46,8 @@ class _Database:
                 f"{db_cfg.host}:{db_cfg.port}/{db_cfg.dbname}"
             )
         else:
-            db_url = "sqlite+aiosqlite:///./dev.db"
+            os.mkdir("./temp")
+            db_url = "sqlite+aiosqlite:///./temp/dev.db"
 
         max_tries = getattr(db_cfg, "maxtries", 3)
         delay = 2
