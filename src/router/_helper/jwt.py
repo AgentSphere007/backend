@@ -1,13 +1,7 @@
 from datetime import datetime, timezone
-from sqlalchemy import exc as error
 from jose import jwt, JWTError
 
 from src.config import config
-
-
-def is_unique_violation(e: error.IntegrityError) -> bool:
-    msg = str(getattr(e, "orig", e)).lower()
-    return "unique" in msg or "duplicate" in msg
 
 
 def create_access_token(data: dict) -> str:
@@ -30,4 +24,4 @@ def verify_access_token(token: str) -> dict:
         raise ValueError("Invalid or expired token")
 
 
-__all__ = ["is_unique_violation", "create_access_token", "verify_access_token"]
+__all__ = ["create_access_token", "verify_access_token"]

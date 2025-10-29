@@ -1,6 +1,6 @@
 from sqlalchemy import exc as error
 from sqlalchemy import select
-from src.router.auth import helper
+import src.router._helper as helper
 from src.db import DB
 from src.models import User
 from fastapi import HTTPException, status
@@ -15,10 +15,10 @@ async def user_signup(username: str, password: str):
             await session.commit()
             await session.refresh(user)
             data = {"uid": user.id, "sub": user.username}
-            return {"token": helper.create_access_token(data)}
+            return {"token": helper.jwt.create_access_token(data)}
         except error.IntegrityError as e:
             await session.rollback()
-            if helper.is_unique_violation(e):
+            if helper.sql_error.is_unique_violation(e):
                 raise HTTPException(
                     status_code=status.HTTP_409_CONFLICT,
                     detail="Username already exists",
@@ -45,4 +45,4 @@ async def user_login(username: str, password: str):
                 detail="Invalid credentials",
             )
         data = {"uid": user.id, "sub": user.username}
-        return {"token": helper.create_access_token(data)}
+        return {"token": helper.jwt.create_access_token(data)}

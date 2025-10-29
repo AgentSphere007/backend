@@ -1,2 +1,5 @@
-async def user_create_handler():
-    return "test"
+from fastapi import APIRouter
+
+userRouter = APIRouter(prefix="/user")
+
+__all__ = ["userRouter"]
