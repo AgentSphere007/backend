@@ -155,7 +155,8 @@ return a short JSON object with three fields:
   3) "recommendations": array of 1-3 prioritized remediation steps (very short).
 Return valid JSON ONLY. If no issues found, return:
   {"summary":"No critical issues found.","core_issues":[],"recommendations":[]}
-Be conservative: only treat items as high-priority if they are dangerous (e.g. hardcoded secrets, eval/exec, command execution, SQLi patterns, prompt injections). Read through the lines of code in which the threats were detected, if the threats are baseless like threats found in import statements, comments etc, then ignore it.
+Be conservative: only treat items as high-priority if they are dangerous (e.g. hardcoded secrets, eval/exec, command execution, SQLi patterns, prompt injections). Read through the lines of code in which the threats were detected, if the threats are baseless like threats found in import statements, comments etc, then ignore it. 
+In the case of api's if for eg: api_key = variable name, then pass it off as not a threat, if there is an api key hardcoded eg: api_key = "cwbfdsbcdczodbvsxsxawe2783", then flag it.
 Do NOT invent file contents; base conclusions only on the supplied report text.
 """).strip()
 
