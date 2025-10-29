@@ -10,12 +10,13 @@ from sqlalchemy.ext.asyncio import (
     create_async_engine,
 )
 from datetime import datetime
-from sqlalchemy import DateTime, exc, func
+from sqlalchemy import DateTime, Integer, exc, func
 
 from src.config import config
 
 
 class _Base(DeclarativeBase):
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     created_at: Mapped[DateTime] = mapped_column(
         DateTime, server_default=func.now(), nullable=False
     )
@@ -46,7 +47,8 @@ class _Database:
                 f"{db_cfg.host}:{db_cfg.port}/{db_cfg.dbname}"
             )
         else:
-            os.mkdir("./temp")
+            if not os.path.exists("./temp"):
+                os.makedirs("./temp", exist_ok=True)
             db_url = "sqlite+aiosqlite:///./temp/dev.db"
 
         max_tries = getattr(db_cfg, "maxtries", 3)
