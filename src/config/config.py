@@ -18,7 +18,12 @@ def init_config():
         host=cfg["server"]["host"],
         port=cfg["server"]["port"],
         production=cfg["server"]["production"],
-        security=SecurityConfig(jwt_secret=cfg["server"]["security"]["jwt-secret"]),
+        security=SecurityConfig(
+            jwt_secret=cfg["server"]["security"]["jwt-secret"],
+            token_expiry=SecurityConfig.parse_expiry(
+                cfg["server"]["security"]["token-expiry"]
+            ),
+        ),
     )
 
     database = DatabaseConfig(

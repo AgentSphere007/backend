@@ -5,6 +5,7 @@ production = false
 
 [server.security]
 jwt-secret = "somethingxyz"
+token-expiry = "6h"
 
 [database]
 host = "database"
