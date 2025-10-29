@@ -136,6 +136,7 @@ async def user_repos(request: Request, user: str):
                 "rating": repo.rating,
                 "is_private": repo.is_private,
                 "user_name": repo.user.username,
+                "status": repo.status,
             }
             for repo in repos
         ]
