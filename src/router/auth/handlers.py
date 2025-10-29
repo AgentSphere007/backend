@@ -3,10 +3,10 @@ from fastapi import HTTPException, status
 import src.router._helper as helper
 from src.db import DB
 from src.models import User
-from .schema import UserRequest, AuthTokenResponse
+from .schema import AuthTokenResponse, UserLoginRequest, UserSignupRequest
 
 
-async def user_signup(body: UserRequest) -> AuthTokenResponse:
+async def user_signup(body: UserSignupRequest) -> AuthTokenResponse:
     user = User(username=body.username)
     user.set_password(body.password)
 
@@ -30,7 +30,7 @@ async def user_signup(body: UserRequest) -> AuthTokenResponse:
             ) from e
 
 
-async def user_login(body: UserRequest) -> AuthTokenResponse:
+async def user_login(body: UserLoginRequest) -> AuthTokenResponse:
     async with DB.session() as session:
         stmt = select(User).where(User.username == body.username)
         result = await session.execute(stmt)
