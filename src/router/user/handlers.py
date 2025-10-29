@@ -3,7 +3,7 @@ from sqlalchemy import select
 from src.router.user.middleware import require_auth_endpoint
 from src.db import DB
 from src.models import User
-from .schemas import UserMeResponse
+from .schema import UserMeResponse
 
 
 @require_auth_endpoint
